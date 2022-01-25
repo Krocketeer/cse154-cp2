@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+  ***
+  * Kenny "Ackerson" Le
+  * CSE 154 AF, Winter 2022
+  * TA: Ludvig Liljenberg, Marina Wooden
+  * 1/20/22
+  * Creative Project #2
+  * Description: Homepage that formats links and versions for
+  * vendors who request custom versions. Allows for the input
+  * of multiple version and links and formats it in a printable
+  * format.
+  * Originally created (entirely by me) during my internship with
+  * Anthem, Inc. in Summer 2021.
+  ***
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Stylesheets -->
+    <link href="reset.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="index.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <!-- Image from Anthem Creative Studios Email Toolkit: -->
+        <!-- https://www.csbdcreativestudio.com/work-detail-36331002/email-toolkit-website-->
+        <span id="wordmark">
+          <img src="images/CSlogo.svg" alt="CSBD Creative Studio">
+        </span>
+        <p id="header-title">Proof Formatter</p>
+      </header>
+
+      <section>
+        <p>
+          This tool is used to format links we will provide to vendors. Input the title,
+          versions, and links, as necessary. Once done, click the submit button to format
+          your proof. Then you can print that page by pressing Ctrl + P or Cmd + P.
+        </p>
+        <p>Note: every version must be accompanied by a link.</p>
+      </section>
+
+      <section>
+        <div id="title-layout">
+          <label for="title-input"><h2>Title:</h2></label>
+          <input id="title-input" type="text" autocomplete="off" />
+        </div>
+        <div id="input-layout">
+          <table>
+            <tr>
+              <th><h2>Versions:</h2></th>
+              <th><h2>Links:</h2></th>
+              <!-- Image from Icons8: https://icons8.com/icon/24717/add -->
+              <th><img id="add-button" src="images/icons8-add-50.png" alt="plus icon"/></th>
+            </tr>
+            <tr>
+              <td>
+                <label for="version-one">Version 1</label>
+                <input id="version-one" class="version-input" type="text" autocomplete="off" />
+              </td>
+              <td>
+                <label for="link-one">Link 1</label>
+                <input id="link-one" class="link-input" type="text" autocomplete="off" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="version-two">Version 2</label>
+                <input id="version-two" class="version-input" type="text" autocomplete="off"/>
+              </td>
+              <td>
+                <label for="link-two">Link 2</label>
+                <input id="link-two" class="link-input" type="text" autocomplete="off"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="version-three">Version 3</label>
+                <input id="version-three" class="version-input" type="text" autocomplete="off"/>
+              </td>
+              <td>
+                <label for="link-three">Link 3</label>
+                <input id="link-three" class="link-input" type="text" autocomplete="off"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <button id="submit-button">Submit</button>
+      </section>
+    </div>
+    <footer>&copy; Anthem Creative Studios 2021, created by Kenny Le</footer>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+@charset "UTF-8";
+/*
+ * Kenny "Ackerson" Le
+ * CSE 154 AF, Winter 2022
+ * TA: Ludvig Liljenberg, Marina Wooden
+ * 1/20/22
+ * Creative Project #2
+ * Description: Global stylesheet for proof formatter that uses a
+ * clean, simplistic theme
+ */
+
+body {
+  height: 100%;
+  width: 100%;
+  background: rgb(247, 247, 247);
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+}
+
+header {
+  padding: 10px 0 20px;
+  margin-bottom: 20px;
+  position: relative;
+  top: 2%;
+}
+
+header,
+#content,
+#input-layout,
+#main-field,
+#button-alignment {
+  display: flex;
+}
+
+header,
+#content,
+#input-layout {
+  flex-flow: row nowrap;
+}
+
+section p {
+  padding-bottom: 25px;
+  line-height: 18px;
+}
+
+footer {
+  background: black;
+  height: 75px;
+  color: #fff;
+}
+
+#wordmark {
+  padding-right: 15px;
+  padding-top: 3px;
+}
+
+#wordmark,
+#header-title {
+  flex: 0 0 auto;
+  height: 33px;
+}
+
+
+#header-title {
+  padding-left: 15px;
+  border-left: 1px solid #373737;
+  font-family: 'Montserrat', 'Arial', 'Helvetica', sans-serif;
+  font-weight: 300;
+  color: #333;
+  font-size: 22px;
+  padding-top: 4px;
+}
+
+#title-layout,
+th,
+td {
+  padding: 10px 5px 6px;
+}
+
+#input-layout {
+  justify-content: space-between;
+}
+
+#main-field {
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+#title-input {
+  width: 25vw;
+}
+
+.version-input {
+  width: 20vw;
+}
+
+.link-input {
+  width: 70vw;
+}
+
+#title-input,
+.version-input,
+.link-input {
+  height: 20px;
+}
+
+th,
+td {
+  text-align: left;
+}
+
+input {
+  padding: 10px 12px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  outline: none;
+}
+
+#add-button {
+  width: 32px;
+  height: 32px;
+}
+
+#add-button,
+#submit-button {
+  cursor: pointer;
+}
+
+#submit-button {
+  display: block;
+  margin: 50px auto;
+  padding: 14px 60px;
+  font-size: 18px;
+  color: #FFFFFF;
+  border: 0;
+  background-size: 400% 400%;
+  background-image: radial-gradient(circle at bottom right,#37475a 0,#0079C2 100%);
+}
+
+#button-alignment {
+  flex-direction: column;
+  align-items: center;
+}
+
+#container {
+  padding: 20px 40px;
+  min-height: 92vh;
+}

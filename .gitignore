@@ -1,3 +1,7 @@
 .*
 !.gitignore
 !.gitlab-ci.yml
+
+# Custom Files
+original.css
+index2.js
