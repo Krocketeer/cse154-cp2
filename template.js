@@ -11,7 +11,10 @@
 (function() {
     window.addEventListener('load', init);
 
-    function init() {
+  /**
+   * Retrieves input entries and formats it in a new page for a user to print
+   */
+  function init() {
         let titleToInput = document.getElementById('input-title');
         let rowsToInput = document.getElementById('input-rows');
 
