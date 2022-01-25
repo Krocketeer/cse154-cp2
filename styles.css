@@ -87,6 +87,18 @@ td {
   padding-bottom: 15px;
 }
 
+#warning {
+  font-size: 28px;
+  color: red;
+  display: none;
+  text-align: center;
+}
+
+#warning.active,
+#submit-button {
+  display: block;
+}
+
 #input-layout {
   justify-content: space-between;
 }
@@ -137,7 +149,6 @@ input {
 }
 
 #submit-button {
-  display: block;
   margin: 50px auto;
   padding: 14px 60px;
   font-size: 18px;

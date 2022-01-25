@@ -31,16 +31,18 @@
    */
   function formatProof() {
     let td = document.getElementsByTagName('td');
+    let warning = document.getElementById('warning')
     if (!checkMinInput()) {
-      alert('Please input a title and at least one version and link.');
+      warning.classList.add('active');
     } else {
+      warning.classList.remove('active');
       let title = document.getElementById('title-input').value;
       title = escapeHTML(title);
       let entries = [];
       for (let i = 0; i < td.length; i++) {
         let entry = escapeHTML(td[i].getElementsByTagName('input')[0].value);
         if (!entry) {
-            continue;
+          continue;
         }
         entries.push(entry);
       }
@@ -97,7 +99,7 @@
 
     let VLInputs = [];
     for (let i = 0; i < td.length; i++) {
-        VLInputs.push(td[i].getElementsByTagName('input')[0].value !== "");
+      VLInputs.push(td[i].getElementsByTagName('input')[0].value !== "");
     }
 
     let minVersionLink = (countOccurrences(VLInputs, true) >= 2);
@@ -108,12 +110,12 @@
    * Takes an array and a value and counts the number of times
    * the value appears in the array
    * Base code credit: https://stackoverflow.com/a/5669730/17459524
-   * @param arr The array to search
-   * @param val The value to search for
+   * @param array The array to search
+   * @param value The value to search for
    * @returns {*} The occurances of the value in the array
    */
-  function countOccurrences(arr, val) {
-    return arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+  function countOccurrences(array, value) {
+    return array.reduce((arr, val) => (val === value ? arr + 1 : arr), 0);
   }
 
   /**
@@ -140,10 +142,9 @@
   function createTable(entries) {
     let table = ``;
     for (let i = 0; i < entries.length; i += 2) {
-      table +=
-          `<tr>
-          <td class="version">${escapeHTML(entries[i])}</td>
-          <td class="link">${escapeHTML(entries[i + 1])}</td>
+      table += `<tr>
+        <td class="version">${escapeHTML(entries[i])}</td>
+        <td class="link">${escapeHTML(entries[i + 1])}</td>
       </tr>`
     }
     return table;
@@ -164,24 +165,23 @@
     const numArrTwo = ['', '', 'twenty', 'thirty', 'forty',
       'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 
+    if ((num = num.toString()).length > 9) {
+      return 'overflow';
+    }
 
-      if ((num = num.toString()).length > 9) {
-        return 'overflow';
-      }
+    let number = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if (!number) {
+      return;
+    }
+    let str = '';
+    str += (number[1] !== 0) ? (numArrOne[Number(number[1])] || numArrTwo[number[1][0]] + ' ' + numArrOne[number[1][1]]) + '' : '';
+    str += (number[2] !== 0) ? (numArrOne[Number(number[2])] || numArrTwo[number[2][0]] + ' ' + numArrOne[number[2][1]]) + '' : '';
+    str += (number[3] !== 0) ? (numArrOne[Number(number[3])] || numArrTwo[number[3][0]] + ' ' + numArrOne[number[3][1]]) + 'thousand ' : '';
+    str += (number[4] !== 0) ? (numArrOne[Number(number[4])] || numArrTwo[number[4][0]] + ' ' + numArrOne[number[4][1]]) + 'hundred ' : '';
+    str += (number[5] !== 0) ? ((str !== '') ? 'and ' : '') + (numArrOne[Number(number[5])] || numArrTwo[number[5][0]] + ' ' + numArrOne[number[5][1]]) + '' : '';
+    str = str.trim();
 
-      let number = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
-      if (!number) {
-        return;
-      }
-      let str = '';
-      str += (number[1] !== 0) ? (numArrOne[Number(number[1])] || numArrTwo[number[1][0]] + ' ' + numArrOne[number[1][1]]) + '' : '';
-      str += (number[2] !== 0) ? (numArrOne[Number(number[2])] || numArrTwo[number[2][0]] + ' ' + numArrOne[number[2][1]]) + '' : '';
-      str += (number[3] !== 0) ? (numArrOne[Number(number[3])] || numArrTwo[number[3][0]] + ' ' + numArrOne[number[3][1]]) + 'thousand ' : '';
-      str += (number[4] !== 0) ? (numArrOne[Number(number[4])] || numArrTwo[number[4][0]] + ' ' + numArrOne[number[4][1]]) + 'hundred ' : '';
-      str += (number[5] !== 0) ? ((str !== '') ? 'and ' : '') + (numArrOne[Number(number[5])] || numArrTwo[number[5][0]] + ' ' + numArrOne[number[5][1]]) + '' : '';
-      str = str.trim()
-
-      // https://stackoverflow.com/questions/1983648/replace-spaces-with-dashes-and-make-all-letters-lower-case
-      return str.replace(/\s+/g, '-').toLowerCase();
+    // https://stackoverflow.com/questions/1983648/replace-spaces-with-dashes-and-make-all-letters-lower-case
+    return str.replace(/\s+/g, '-').toLowerCase();
   }
 })();
