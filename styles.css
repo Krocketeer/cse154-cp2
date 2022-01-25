@@ -61,7 +61,6 @@ footer {
   height: 33px;
 }
 
-
 #header-title {
   padding-left: 15px;
   border-left: 1px solid #373737;
@@ -76,6 +75,16 @@ footer {
 th,
 td {
   padding: 10px 5px 6px;
+}
+
+#title-layout input {
+  margin-top: 15px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 700;
+  padding-bottom: 15px;
 }
 
 #input-layout {
@@ -135,7 +144,7 @@ input {
   color: #FFFFFF;
   border: 0;
   background-size: 400% 400%;
-  background-image: radial-gradient(circle at bottom right,#37475a 0,#0079C2 100%);
+  background-image: radial-gradient(circle at bottom right, #37475a 0, #0079C2 100%);
 }
 
 #button-alignment {
