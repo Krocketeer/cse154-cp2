@@ -31,7 +31,7 @@
    */
   function formatProof() {
     let td = document.getElementsByTagName('td');
-    let warning = document.getElementById('warning')
+    let warning = document.getElementById('warning');
     if (!checkMinInput()) {
       warning.classList.add('active');
     } else {
@@ -41,10 +41,9 @@
       let entries = [];
       for (let i = 0; i < td.length; i++) {
         let entry = escapeHTML(td[i].getElementsByTagName('input')[0].value);
-        if (!entry) {
-          continue;
+        if (entry) {
+          entries.push(entry);
         }
-        entries.push(entry);
       }
 
       let tableEntries = createTable(entries);
@@ -110,9 +109,9 @@
    * Takes an array and a value and counts the number of times
    * the value appears in the array
    * Base code credit: https://stackoverflow.com/a/5669730/17459524
-   * @param array The array to search
-   * @param value The value to search for
-   * @returns {*} The occurances of the value in the array
+   * @param {Array} array The array to search
+   * @param {*} value The value to search for
+   * @returns {Number} The occurrences of the value in the array
    */
   function countOccurrences(array, value) {
     return array.reduce((arr, val) => (val === value ? arr + 1 : arr), 0);
@@ -121,8 +120,8 @@
   /**
    * Takes a string and removes any HTML special characters from it
    * Base code credit: https://stackoverflow.com/questions/6234773/can-i-escape-html-special-chars-in-javascript/18108463
-   * @param text The string to be formatted
-   * @returns {*} The string without HTML special characters
+   * @param {String} text The string to be formatted
+   * @returns {String} The string without HTML special characters
    */
   function escapeHTML(text) {
     return text
@@ -136,8 +135,8 @@
   /**
    * Takes HTML formatted labels and inputs and formats them inside
    * a table row entry tags to create a table
-   * @param entries
-   * @returns {string}
+   * @param {String} entries values inputted into links and versions
+   * @returns {String} HTML formatted entries for a table
    */
   function createTable(entries) {
     let table = ``;
@@ -145,7 +144,7 @@
       table += `<tr>
         <td class="version">${escapeHTML(entries[i])}</td>
         <td class="link">${escapeHTML(entries[i + 1])}</td>
-      </tr>`
+      </tr>`;
     }
     return table;
   }
@@ -153,32 +152,39 @@
   /**
    * Takes an integer and returns its word form e.g. 4 -> four
    * Base code credit: https://stackoverflow.com/questions/14766951/transform-numbers-to-words-in-lakh-crore-system
-   * @param num integer
+   * @param {Number} num integer
    * @returns {string} the integer in word form
    */
   function numInWords(num) {
-    const numArrOne = ['', 'one', 'two', 'three', 'four', 'five',
+    const NUM_ARR_ONE = ['', 'one', 'two', 'three', 'four', 'five',
       'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
       'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
       'eighteen', 'nineteen'];
 
-    const numArrTwo = ['', '', 'twenty', 'thirty', 'forty',
+    const NUM_ARR_TWO = ['', '', 'twenty', 'thirty', 'forty',
       'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 
-    if ((num = num.toString()).length > 9) {
+    const MAX_LEN = 9;
+
+    if ((num = num.toString()).length > MAX_LEN) {
       return 'overflow';
     }
 
-    let number = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    let number = ('000000000' + num).substr(-(MAX_LEN)).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
     if (!number) {
       return;
     }
     let str = '';
-    str += (number[1] !== 0) ? (numArrOne[Number(number[1])] || numArrTwo[number[1][0]] + ' ' + numArrOne[number[1][1]]) + '' : '';
-    str += (number[2] !== 0) ? (numArrOne[Number(number[2])] || numArrTwo[number[2][0]] + ' ' + numArrOne[number[2][1]]) + '' : '';
-    str += (number[3] !== 0) ? (numArrOne[Number(number[3])] || numArrTwo[number[3][0]] + ' ' + numArrOne[number[3][1]]) + 'thousand ' : '';
-    str += (number[4] !== 0) ? (numArrOne[Number(number[4])] || numArrTwo[number[4][0]] + ' ' + numArrOne[number[4][1]]) + 'hundred ' : '';
-    str += (number[5] !== 0) ? ((str !== '') ? 'and ' : '') + (numArrOne[Number(number[5])] || numArrTwo[number[5][0]] + ' ' + numArrOne[number[5][1]]) + '' : '';
+    str += (number[1] !== 0) ? (NUM_ARR_ONE[Number(number[1])] ||
+      NUM_ARR_TWO[number[1][0]] + ' ' + NUM_ARR_ONE[number[1][1]]) + '' : '';
+    str += (number[2] !== 0) ? (NUM_ARR_ONE[Number(number[2])] ||
+      NUM_ARR_TWO[number[2][0]] + ' ' + NUM_ARR_ONE[number[2][1]]) + '' : '';
+    str += (number[3] !== 0) ? (NUM_ARR_ONE[Number(number[3])] ||
+      NUM_ARR_TWO[number[3][0]] + ' ' + NUM_ARR_ONE[number[3][1]]) + 'thousand ' : '';
+    str += (number[4] !== 0) ? (NUM_ARR_ONE[Number(number[4])] ||
+      NUM_ARR_TWO[number[4][0]] + ' ' + NUM_ARR_ONE[number[4][1]]) + 'hundred ' : '';
+    str += (number[5] !== 0) ? ((str !== '') ? 'and ' : '') +
+      (NUM_ARR_ONE[Number(number[5])] || NUM_ARR_TWO[number[5][0]] + ' ' + NUM_ARR_ONE[number[5][1]]) + '' : '';
     str = str.trim();
 
     // https://stackoverflow.com/questions/1983648/replace-spaces-with-dashes-and-make-all-letters-lower-case
