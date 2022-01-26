@@ -163,7 +163,6 @@
     const NUM_ARR_TWO = ['', '', 'twenty', 'thirty', 'forty',
       'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
     const MAX_LEN = 9;
-
     if ((num = num.toString()).length > MAX_LEN) {
       return 'overflow';
     }
@@ -185,7 +184,6 @@
       (NUM_ARR_ONE[Number(number[5])] || NUM_ARR_TWO[number[5][0]] + ' ' +
         NUM_ARR_ONE[number[5][1]]) + '' : '';
     str = str.trim();
-
     // https://stackoverflow.com/questions/1983648/replace-spaces-with-dashes-and-make-all-letters-lower-case
     return str.replace(/\s+/g, '-').toLowerCase();
   }
