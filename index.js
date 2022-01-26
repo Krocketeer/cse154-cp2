@@ -170,7 +170,8 @@
       return 'overflow';
     }
 
-    let number = ('000000000' + num).substr(-(MAX_LEN)).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    let number = ('000000000' + num).substr(-(MAX_LEN)).match(
+      /^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
     if (!number) {
       return;
     }
@@ -184,7 +185,8 @@
     str += (number[4] !== 0) ? (NUM_ARR_ONE[Number(number[4])] ||
       NUM_ARR_TWO[number[4][0]] + ' ' + NUM_ARR_ONE[number[4][1]]) + 'hundred ' : '';
     str += (number[5] !== 0) ? ((str !== '') ? 'and ' : '') +
-      (NUM_ARR_ONE[Number(number[5])] || NUM_ARR_TWO[number[5][0]] + ' ' + NUM_ARR_ONE[number[5][1]]) + '' : '';
+      (NUM_ARR_ONE[Number(number[5])] || NUM_ARR_TWO[number[5][0]] + ' ' +
+        NUM_ARR_ONE[number[5][1]]) + '' : '';
     str = str.trim();
 
     // https://stackoverflow.com/questions/1983648/replace-spaces-with-dashes-and-make-all-letters-lower-case
