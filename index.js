@@ -160,18 +160,15 @@
       'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
       'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
       'eighteen', 'nineteen'];
-
     const NUM_ARR_TWO = ['', '', 'twenty', 'thirty', 'forty',
       'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-
     const MAX_LEN = 9;
 
     if ((num = num.toString()).length > MAX_LEN) {
       return 'overflow';
     }
-
-    let number = ('000000000' + num).substr(-(MAX_LEN)).match(
-      /^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    let number =
+      ('000000000' + num).substr(-(MAX_LEN)).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
     if (!number) {
       return;
     }
